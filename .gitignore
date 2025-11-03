@@ -1,0 +1,112 @@
+# IDE and Editor folders
+.claude/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS-specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build outputs
+dist/
+build/
+.svelte-kit/
+**/.svelte-kit/
+out/
+.next/
+.cache/
+
+# Environment files
+.env
+.env.local
+.env*.local
+.env.production
+.env.development
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Testing
+coverage/
+.nyc_output/
+*.lcov
+
+# Temporary files
+*.tmp
+*.temp
+.temp/
+.tmp/
+
+# Android specific (apps/numa-android)
+apps/numa-android/.gradle/
+apps/numa-android/.idea/
+apps/numa-android/local.properties
+apps/numa-android/build/
+apps/numa-android/app/build/
+apps/numa-android/*.iml
+apps/numa-android/*.apk
+apps/numa-android/*.aab
+apps/numa-android/captures/
+apps/numa-android/.externalNativeBuild
+apps/numa-android/.cxx
+
+# iOS specific (apps/numa-ios)
+apps/numa-ios/build/
+apps/numa-ios/DerivedData/
+apps/numa-ios/*.pbxuser
+apps/numa-ios/*.mode1v3
+apps/numa-ios/*.mode2v3
+apps/numa-ios/*.perspectivev3
+apps/numa-ios/xcuserdata/
+apps/numa-ios/*.xccheckout
+apps/numa-ios/*.moved-aside
+apps/numa-ios/*.xcuserstate
+apps/numa-ios/*.xcworkspace
+!apps/numa-ios/*.xcworkspace/contents.xcworkspacedata
+apps/numa-ios/Pods/
+apps/numa-ios/Podfile.lock
+
+# Services build artifacts
+services/**/node_modules/
+services/**/dist/
+services/**/build/
+services/**/.env
+services/**/.env.local
+
+# Packages build artifacts
+packages/**/node_modules/
+packages/**/dist/
+packages/**/build/
+
+# Libs build artifacts
+libs/**/node_modules/
+libs/**/dist/
+libs/**/build/
+
+# Turbo cache
+.turbo/
+
+# TypeScript
+*.tsbuildinfo
+
+# Misc
+.vercel
+.netlify
