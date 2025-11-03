@@ -1,4 +1,6 @@
+# ========================================================
 # IDE and Editor folders
+# ========================================================
 .claude/
 .vscode/
 .idea/
@@ -6,7 +8,9 @@
 *.swo
 *~
 
+# ========================================================
 # OS-specific files
+# ========================================================
 .DS_Store
 .DS_Store?
 ._*
@@ -15,11 +19,15 @@
 ehthumbs.db
 Thumbs.db
 
+# ========================================================
 # Dependencies
+# ========================================================
 node_modules/
 **/node_modules/
 
+# ========================================================
 # Build outputs
+# ========================================================
 dist/
 build/
 .svelte-kit/
@@ -28,14 +36,18 @@ out/
 .next/
 .cache/
 
+# ========================================================
 # Environment files
+# ========================================================
 .env
 .env.local
 .env*.local
 .env.production
 .env.development
 
+# ========================================================
 # Logs
+# ========================================================
 logs/
 *.log
 npm-debug.log*
@@ -44,31 +56,45 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# ========================================================
 # Testing
+# ========================================================
 coverage/
 .nyc_output/
 *.lcov
 
+# ========================================================
 # Temporary files
+# ========================================================
 *.tmp
 *.temp
 .temp/
 .tmp/
 
+# ========================================================
 # Android specific (apps/numa-android)
+# ========================================================
 apps/numa-android/.gradle/
 apps/numa-android/.idea/
 apps/numa-android/local.properties
 apps/numa-android/build/
 apps/numa-android/app/build/
+apps/numa-android/gradle/
 apps/numa-android/*.iml
 apps/numa-android/*.apk
 apps/numa-android/*.aab
 apps/numa-android/captures/
-apps/numa-android/.externalNativeBuild
-apps/numa-android/.cxx
+apps/numa-android/.externalNativeBuild/
+apps/numa-android/.cxx/
+apps/numa-android/.kotlin/
+apps/numa-android/.navigation/
+apps/numa-android/.gradletasknamecache/
+apps/numa-android/gradlew*
+apps/numa-android/gradle.properties
 
+# ========================================================
 # iOS specific (apps/numa-ios)
+# ========================================================
 apps/numa-ios/build/
 apps/numa-ios/DerivedData/
 apps/numa-ios/*.pbxuser
@@ -79,30 +105,69 @@ apps/numa-ios/xcuserdata/
 apps/numa-ios/*.xccheckout
 apps/numa-ios/*.moved-aside
 apps/numa-ios/*.xcuserstate
-apps/numa-ios/*.xcworkspace
-!apps/numa-ios/*.xcworkspace/contents.xcworkspacedata
+apps/numa-ios/*.xcsettings
+apps/numa-ios/*.xcworkspace/xcuserdata/
+apps/numa-ios/*.xcuserdatad/
 apps/numa-ios/Pods/
 apps/numa-ios/Podfile.lock
+apps/numa-ios/*.xcworkspace
+apps/numa-ios/numa-ios.xcodeproj/
+!apps/numa-ios/*.xcworkspace/contents.xcworkspacedata
+xcuserdata/
+*.moved-aside
 
+# ========================================================
 # Services build artifacts
+# ========================================================
 services/**/node_modules/
 services/**/dist/
 services/**/build/
 services/**/.env
 services/**/.env.local
+services/**/__pycache__/
+services/**/tmp/
+services/**/tests/__pycache__/
 
+# ========================================================
 # Packages build artifacts
+# ========================================================
 packages/**/node_modules/
 packages/**/dist/
 packages/**/build/
 
+# ========================================================
 # Libs build artifacts
+# ========================================================
 libs/**/node_modules/
 libs/**/dist/
 libs/**/build/
 
+# ========================================================
+# Rust-specific (services/dna-processor and any Rust crates)
+# ========================================================
+target/
+debug/
+release/
+Cargo.lock
+.rustc_info.json
+CACHEDIR.TAG
+*.rs.bk
+wasm-pack.log
+/pkg/
+*.so
+*.whl
+build/
+dist/
+tmp/
+*.test
+*.tmp
+
+# ========================================================
 # Turbo cache
+# ========================================================
 .turbo/
 
+# ========================================================
 # TypeScript
+# ========================================================
 *.tsbuildinfo
