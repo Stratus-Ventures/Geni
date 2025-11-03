@@ -106,7 +106,3 @@ libs/**/build/
 
 # TypeScript
 *.tsbuildinfo
-
-# Misc
-.vercel
-.netlify
