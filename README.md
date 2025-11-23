@@ -1,6 +1,0 @@
-## User Stories
-
-```mermaid
-    journey
-        
-```
