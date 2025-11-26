@@ -2,4 +2,6 @@
 
 
 // C O M P O N E N T S ------------ //
-export { default as Logo } from './components/Logo.svelte';
+export { default as ThemeToggle } from './components/ui/ThemeToggle.svelte';
+export { default as LogoIcon } from './components/ui/LogoIcon.svelte';
+export * from './components/ui/button';
