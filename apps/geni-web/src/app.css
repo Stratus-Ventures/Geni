@@ -1,1 +1,37 @@
 @import 'tailwindcss';
+
+@font-face {
+    font-family: 'Geni Display';
+    src: url('/fonts/GeniDisplay-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Geni Display';
+    src: url('/fonts/GeniDisplay-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Geni Display';
+    src: url('/fonts/GeniDisplay-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    @apply antialiased;
+}
+
+body {
+    font-family: 'Geni Display', system-ui, sans-serif;
+}
+
+.text-logo {
+    @apply text-[32px] font-semibold tracking-tight;
+}
