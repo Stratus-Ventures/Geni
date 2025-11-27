@@ -10,8 +10,7 @@
 
 <Button
 	onclick={toggleMode}
-	variant="no_padding"
-	size="icon-sm"
+	variant="no_style"
 	class="rounded-full relative cursor-pointer"
 	onmouseenter={() => isHovered = true}
 	onmouseleave={() => isHovered = false}
@@ -25,7 +24,7 @@
 		   ANIMATION: Only plays if hovered AND currently visible (light mode).
 		   This ensures that if you switch modes while hovering, the animation starts fresh.
 		-->
-		<div class="absolute transition-all duration-300
+		<div class="relative transition-all duration-300
             {mode.current === 'dark' ? 'opacity-0' : 'opacity-100'}">
 			<SunIcon
 				size={18}

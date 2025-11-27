@@ -121,7 +121,7 @@
   }
 
   small {
-    @apply text-xs font-normal text-muted-foreground tracking-tight leading-tight;
+    @apply text-sm font-normal text-muted-foreground tracking-tight leading-tight;
   }
 }
 
@@ -167,20 +167,17 @@
 @layer utilities {
 
   /* GRADIENTS */
-
   .background-gradient {
     background:
       /* Top Layer: Gradient (Subtle Accent) */
       linear-gradient(
               to bottom,
-              oklch(from var(--accent) l c h / 0.025),
+              oklch(from var(--accent) l c h / 0),
               oklch(from var(--accent) l c h / 0.16)
       ),
       var(--background);
     background-attachment: fixed;
     background-size: cover;
   }
-
-
 
 }

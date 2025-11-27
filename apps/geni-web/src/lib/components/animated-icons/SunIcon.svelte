@@ -1,10 +1,9 @@
 <script lang="ts">
-    // "Dumb" Component - It just does what the parent tells it
     let {
         color = 'currentColor',
         size = 24,
         strokeWidth = 2,
-        isHovered = false, // Controlled by parent
+        isHovered = false,
         class: className = ''
     } = $props();
 
