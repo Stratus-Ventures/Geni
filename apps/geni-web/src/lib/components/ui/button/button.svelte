@@ -7,13 +7,13 @@
         base: "focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
         variants: {
             variant: {
-                default: "bg-primary text-primary-foreground shadow-xs hover:bg-primary/90",
+                default: "bg-primary text-primary-foreground hover:bg-primary/90",
                 destructive:
-                    "bg-destructive shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60 text-white",
+                    "bg-destructive hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60 text-white",
                 outline:
-                    "bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 border",
-                secondary: "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80",
-                ghost: "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
+                    "bg-accent/40 hover:bg-accent/80 hover:text-accent-foreground dark:border-input dark:bg-input/10 dark:hover:bg-input/40 border",
+                secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+                ghost: "hover:bg-accent/30 hover:text-accent-foreground dark:hover:bg-accent/50",
 
                 link: "!h-auto !p-0 !rounded-none text-primary relative after:transition-transform after:duration-300 after:ease-in-out after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-left after:scale-x-0 after:bg-current after:content-[''] hover:after:scale-x-100",
                 no_style: "w-fit h-fit !p-0"

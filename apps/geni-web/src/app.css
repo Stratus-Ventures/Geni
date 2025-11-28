@@ -42,8 +42,9 @@
     --secondary-foreground: oklch(0.216 0.006 56.043);
     --muted: oklch(0.97 0.001 106.424);
     --muted-foreground: oklch(0.553 0.013 58.071);
-    --accent: oklch(0.7 0.202 44.441);
-    --accent-foreground: oklch(0.7 0.202 44.441);
+    --action-orange: oklch(0.7 0.202 44.441);
+    --accent: oklch(0.97 0.001 106.424);
+    --accent-foreground: oklch(0.216 0.006 56.043);
     --destructive: oklch(0.577 0.245 27.325);
     --border: oklch(0.923 0.003 48.717);
     --input: oklch(0.923 0.003 48.717);
@@ -76,8 +77,9 @@
     --secondary-foreground: oklch(0.985 0.001 106.423);
     --muted: oklch(0.268 0.007 34.298);
     --muted-foreground: oklch(0.709 0.01 56.259);
-    --accent: oklch(0.7 0.202 44.441);
-    --accent-foreground: oklch(0.7 0.202 44.441);
+    --action-orange: oklch(0.7 0.202 44.441);
+    --accent: oklch(0.268 0.007 34.298);
+    --accent-foreground: oklch(0.985 0.001 106.423);
     --destructive: oklch(0.704 0.191 22.216);
     --border: oklch(1 0 0 / 10%);
     --input: oklch(1 0 0 / 15%);
@@ -105,15 +107,15 @@
   }
 
   h1 {
-    @apply text-5xl font-medium tracking-tight leading-none;
+    @apply text-3xl sm:text-5xl font-medium tracking-tight leading-none;
   }
 
   h2 {
-    @apply text-3xl font-medium tracking-tight leading-none;
+    @apply text-2xl sm:text-3xl font-medium tracking-tight leading-tight;
   }
 
   h3 {
-    @apply text-xl font-medium tracking-tight leading-none;
+    @apply text-lg sm:text-xl font-medium tracking-tight leading-tight;
   }
 
   p {
@@ -142,6 +144,7 @@
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+  --color-action-orange: var(--action-orange);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
@@ -172,12 +175,16 @@
       /* Top Layer: Gradient (Subtle Accent) */
       linear-gradient(
               to bottom,
-              oklch(from var(--accent) l c h / 0),
-              oklch(from var(--accent) l c h / 0.16)
+              oklch(from var(--action-orange) l c h / 0.02),
+              oklch(from var(--action-orange) l c h / 0.24)
       ),
       var(--background);
     background-attachment: fixed;
     background-size: cover;
+  }
+
+  .button-text {
+    @apply text-base font-medium tracking-tight leading-none;
   }
 
 }
