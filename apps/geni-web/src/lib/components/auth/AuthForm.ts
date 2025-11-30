@@ -1,5 +1,0 @@
-// AUTH  FUNCTIONS
-
-class AuthForm {
-	
-}

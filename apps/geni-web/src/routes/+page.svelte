@@ -1,6 +1,2 @@
-<main
-    class="flex flex-col items-center justify-center
-    w-full h-fit"
->
-    <h1>Geni</h1>
-</main>
+<h1>Welcome to SvelteKit</h1>
+<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
