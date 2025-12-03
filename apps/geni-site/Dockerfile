@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM node:latest
 LABEL authors="jasoncoawette"
 
 ENTRYPOINT ["top", "-b"]
