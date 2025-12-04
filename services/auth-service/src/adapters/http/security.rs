@@ -45,7 +45,8 @@ pub fn apply_security_layers(router: Router) -> Router {
         GovernorConfigBuilder::default()
             .per_second(10)
             .burst_size(20)
-            .use_headers() // Trust X-Forwarded-For (Be careful behind proxies!)
+            // Note: Not using .use_headers() - will use peer address (socket) instead
+            // For production behind a proxy, enable .use_headers() to trust X-Forwarded-For
             .finish()
             .unwrap()
     );

@@ -53,6 +53,13 @@ pub fn init_tracing() {
 
     tracing_subscriber::registry()
         .with(filter)
-        .with(fmt::layer().pretty())
+        .with(
+            fmt::layer()
+                .pretty()
+                .with_file(true)
+                .with_line_number(true)
+                .with_thread_ids(false)
+                .with_target(true)
+        )
         .init();
 }
