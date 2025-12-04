@@ -1,20 +1,23 @@
 FROM node:latest
-LABEL authors="jasoncoawette"
 
 WORKDIR /app
 
-# Enable pnpm
-RUN corepack enable
+# 1. Install pnpm globally using npm (more reliable than corepack)
+RUN npm install -g pnpm
 
-# Install dependencies and build the project
+# 2. Copy ONLY package files first (to cache dependencies)
+COPY package.json pnpm-lock.yaml ./
+
+# 3. Install dependencies
 RUN pnpm install --frozen-lockfile
 
-# Copy all local files to the container
+# 4. Copy the rest of the source code
 COPY . .
 
+# 5. Build the app
 RUN pnpm run build
 
+# Set host to allow external access
 EXPOSE ${PORT}
 
-# Start the Node server
 CMD ["node", "build"]
