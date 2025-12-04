@@ -1,21 +1,23 @@
-FROM node:20-alpine
+FROM node:latest
 
 WORKDIR /app
 
-# Copy package files
-COPY package.json yarn.lock ./
+# 1. Install pnpm globally using npm (more reliable than corepack)
+RUN npm install -g pnpm
 
-# Install dependencies
-RUN yarn install --frozen-lockfile
+# 2. Copy ONLY package files first (to cache dependencies)
+COPY package.json pnpm-lock.yaml ./
 
-# Copy source code
+# 3. Install dependencies
+RUN pnpm install --frozen-lockfile
+
+# 4. Copy the rest of the source code
 COPY . .
 
-# Generate database types and build
-RUN yarn build
+# 5. Build the app
+RUN pnpm run build
 
-# Expose port 4000
-EXPOSE 4000
+# Set host to allow external access
+EXPOSE ${PORT}
 
-# Start the application
 CMD ["node", "build"]
