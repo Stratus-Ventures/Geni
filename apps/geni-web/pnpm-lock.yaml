@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@lucide/svelte':
+        specifier: ^0.556.0
+        version: 0.556.0(svelte@5.45.2)
       '@polar-sh/sveltekit':
         specifier: ^0.7.0
         version: 0.7.0(@sveltejs/kit@2.49.0(@sveltejs/vite-plugin-svelte@6.2.1(svelte@5.45.2)(vite@7.2.4(@types/node@22.19.1)))(svelte@5.45.2)(vite@7.2.4(@types/node@22.19.1)))
@@ -303,6 +306,11 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
+
+  '@lucide/svelte@0.556.0':
+    resolution: {integrity: sha512-jsJhyyd2xrJ4WtflO5TrTtyCBacF4OLBNCzotvwh4zfbbuE6aqdblx+OB0zg6zOno06ib1GJGdDcfR/2TUcb7g==}
+    peerDependencies:
+      svelte: ^5
 
   '@polar-sh/adapter-utils@0.4.0':
     resolution: {integrity: sha512-HfiJgAfCfE7qs9L8o3KgDzToUz3Z0sfvoX6ZnyMnfldX8ERnYxwQN79OsQq+dGKoak7+VhhJQvf348qop+5OKQ==}
@@ -1372,6 +1380,10 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
+
+  '@lucide/svelte@0.556.0(svelte@5.45.2)':
+    dependencies:
+      svelte: 5.45.2
 
   '@polar-sh/adapter-utils@0.4.0':
     dependencies:

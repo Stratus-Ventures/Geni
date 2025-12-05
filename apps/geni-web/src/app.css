@@ -1,0 +1,142 @@
+/* ================================================================== */
+/* G L O B A L   S T Y L E S  										  */
+/* ================================================================== */
+
+:root {
+    /* GLOBAL DEFAULTS */
+    font-family: 'Outfit', -apple-system, sans-serif;
+    font-style: normal;
+    color: var(--color-primary-fg);
+    background-color: var(--color-primary-bg);
+    line-height: normal;
+    letter-spacing: -0.04rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    /* COLORS */
+    --color-primary-fg: oklch(0.147 0.004 49.25);
+    --color-primary-bg: oklch(0.9791 0 0);
+    --color-secondary-fg: oklch(0.444 0.011 73.639);
+    --color-secondary-bg: oklch(0.97 0.001 106.424);
+    --color-accent-primary: oklch(0.6996 0.201959 44.4414);
+    --color-accent-secondary: oklch(0.5542 0.19217 35.4846);
+    --color-accent-primary-grade: oklch(0.6996 0.201959 44.4414 / 8%);
+    --color-accent-secondary-grad: oklch(0.6996 0.201959 44.4414 / 24%);
+    --gradient-main: linear-gradient(
+            180deg,
+            transparent 0%,
+            var(--color-accent-primary-grade) 24%,
+            var(--color-accent-secondary-grad) 100%
+    );
+
+    /* RADIUS */
+    --radius-base: 16px;
+
+}
+
+@media (prefers-color-scheme: dark) {
+   :root {
+       --color-primary-fg: oklch(0.9791 0 0);
+       --color-primary-bg: oklch(0.147 0.004 49.25);
+       --color-secondary-fg: oklch(0.709 0.01 56.259);
+       --color-secondary-bg: oklch(0.268 0.007 34.298);
+   }
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    min-height: 100%;
+    width: 100%;
+}
+
+main {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    padding: 1rem;
+}
+
+@media (min-width: 800px) {
+    main {
+        padding: 2rem;
+    }
+}
+
+/* ================================================================== */
+/* T E X T   S T Y L E S										      */
+/* ================================================================== */
+
+@font-face {
+    font-family: 'Outfit';
+    src: url('/font/Outfit-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Outfit';
+    src: url('/font/Outfit-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Outfit';
+    src: url('/font/Outfit-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-display: swap;
+}
+
+/* MOBILE ---------------------------------------------------------- */
+
+h1 {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+h2 {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+h3 {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+p {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-secondary-fg);
+}
+
+button {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+small {
+    font-size: 0.75rem;
+    font-weight: 400;
+}
+
+/* TABLET & DESKTOP ------------------------------------------------ */
+@media (min-width: 800px) {
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+}

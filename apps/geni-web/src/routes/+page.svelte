@@ -1,2 +1,13 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script lang="ts">
+	import { AuthForm } from "$lib/auth";
+</script>
+
+<main class="grad-bg">
+	<AuthForm />
+</main>
+
+<style>
+	.grad-bg {
+        background: var(--gradient-main), var(--color-primary-bg);
+	}
+</style>
