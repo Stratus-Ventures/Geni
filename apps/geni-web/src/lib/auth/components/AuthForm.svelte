@@ -1,7 +1,6 @@
 <script lang="ts">
     import { Logo } from "$lib/ui";
     import { Mail, Phone } from '@lucide/svelte';
-    import type { authClient as AuthClientType } from '$lib/auth/server/auth-client';
 
     // TYPES & VARIABLES
     let authMethod: 'email' | 'phone' = 'email';
@@ -16,34 +15,10 @@
         error = '';
 	}
 
-    async function handleMagicLinkSubmit(e: Event) {
-        e.preventDefault();
-        loading = true;
-        error = '';
-
-        // Dynamically import auth client to reduce initial bundle size
-        const { authClient } = await import('$lib/auth/server/auth-client');
-
-        const { data, error: authError } = await authClient.signIn.magicLink({
-            email: identifier,
-            callbackURL: "/dashboard",
-            newUserCallbackURL: "/onboarding",
-            errorCallbackURL: "/error",
-        });
-
-        loading = false;
-
-        if (authError) {
-            error = authError.message || 'Failed to send magic link';
-        } else {
-            // Show success message or redirect to check email page
-            alert(`Magic link sent to ${identifier}. Please check your email.`);
-        }
-    }
 
 </script>
 
-<form onsubmit={handleMagicLinkSubmit}>
+<form>
 	<Logo />
 	<h2>Welcome to Geni</h2>
 	<p>Please sign in or sign up below.</p>
