@@ -1,22 +1,57 @@
 <script lang="ts">
-    import { enhance } from '$app/forms';
     import { Logo } from "$lib/ui";
     import { Mail, Phone } from '@lucide/svelte';
-    
+    import type { authClient as AuthClientType } from '$lib/auth/server/auth-client';
+
     // TYPES & VARIABLES
     let authMethod: 'email' | 'phone' = 'email';
-    
+    let identifier = '';
+    let loading = false;
+    let error = '';
+
     // HANDLERS
     function toggleAuthMethod() {
         authMethod = authMethod === 'email' ? 'phone' : 'email';
+        identifier = '';
+        error = '';
 	}
- 
+
+    async function handleMagicLinkSubmit(e: Event) {
+        e.preventDefault();
+        loading = true;
+        error = '';
+
+        // Dynamically import auth client to reduce initial bundle size
+        const { authClient } = await import('$lib/auth/server/auth-client');
+
+        const { data, error: authError } = await authClient.signIn.magicLink({
+            email: identifier,
+            callbackURL: "/dashboard",
+            newUserCallbackURL: "/onboarding",
+            errorCallbackURL: "/error",
+        });
+
+        loading = false;
+
+        if (authError) {
+            error = authError.message || 'Failed to send magic link';
+        } else {
+            // Show success message or redirect to check email page
+            alert(`Magic link sent to ${identifier}. Please check your email.`);
+        }
+    }
+
 </script>
 
-<form method="POST" use:enhance>
+<form onsubmit={handleMagicLinkSubmit}>
 	<Logo />
 	<h2>Welcome to Geni</h2>
 	<p>Please sign in or sign up below.</p>
+
+	{#if error}
+		<p class="error">{error}</p>
+	{/if}
+
 	<div class="label-phone-email-frame">
 		<label for="auth-input">
 			{authMethod === 'email' ? 'Email' : 'Phone'}
@@ -37,24 +72,74 @@
 	</div>
 	<input
 		id="auth-input"
-		name="identifier"
+		bind:value={identifier}
 		type={authMethod === 'email' ? 'email' : 'tel'}
+		placeholder={authMethod === 'email' ? 'your@email.com' : '+14805551234'}
+		required
+		disabled={loading}
 	/>
-	<input type="hidden" name="method" value={authMethod} />
 	<!--Button (continue with (email | phone))-->
 	<button
 		type="submit"
-		formaction="?/register"
+		disabled={loading || !identifier}
 	>
-		Register
+		{loading ? 'Sending...' : `Continue with ${authMethod === 'email' ? 'Email' : 'Phone'}`}
 	</button>
-	<!--separator-->
-	<!--Button (Continue with google)-->
-	<!--Button (Continue with apple)-->
-	<!--Button (Continue with passkey)-->
+	<!--separator Line-->
+	<button
+		formaction="?/w_google"
+	>
+		Continue with Google
+	</button>
+	<button
+		formaction="?/w_apple"
+	>
+		Continue with Apple
+	</button>
+	<button
+		formaction="?/w_passkey"
+	>
+		Sign in with Passkey
+	</button>
+	
+	
+	<div class="legal">
+		<a href="https://geni.health/terms-of-service/" target="_blank">
+			<small>Terms of Service</small>
+		</a>
+		<a href="https://geni.health/privacy_policy/" target="_blank">
+			<small>Privacy Policy</small>
+		</a>
+	</div>
 </form>
 
 <style>
+
+	form {
+		display: flex;
+		flex-direction: column;
+		justify-content: start;
+		align-items: start;
+		width: 100%;
+		max-width: 400px;
+		height: fit-content;
+		background: var(--color-primary-bg);
+		padding: 2rem;
+		border-radius: 24px;
+		gap: 2rem;
+	}
+
+	input {
+		width: 100%;
+		height: fit-content;
+	}
+
+	.error {
+		color: var(--color-error, #ef4444);
+		font-size: 0.875rem;
+		margin: 0;
+	}
+
 	.label-phone-email-frame {
 		display: flex;
 		flex-direction: row;
@@ -63,4 +148,16 @@
 		width: 100%;
 		height: fit-content;
 	}
+
+
+    .legal {
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
+        width: fit-content;
+        height: fit-content;
+        gap: 1rem;
+    }
+
 </style>

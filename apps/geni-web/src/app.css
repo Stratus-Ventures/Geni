@@ -15,7 +15,7 @@
 
     /* COLORS */
     --color-primary-fg: oklch(0.147 0.004 49.25);
-    --color-primary-bg: oklch(0.9791 0 0);
+    --color-primary-bg: oklch(1 0 89.876);
     --color-secondary-fg: oklch(0.444 0.011 73.639);
     --color-secondary-bg: oklch(0.97 0.001 106.424);
     --color-accent-primary: oklch(0.6996 0.201959 44.4414);
@@ -61,7 +61,7 @@ main {
     justify-content: start;
     align-items: center;
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     padding: 1rem;
 }
 
