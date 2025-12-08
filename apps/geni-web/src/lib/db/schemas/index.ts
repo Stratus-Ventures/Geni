@@ -1,5 +1,5 @@
 // ================================================================== //
-// C O M P O N E N T S  																							//
+// S C H E M A S                     																	//
 // ================================================================== //
 
-export { default as AuthForm } from './components/AuthForm.svelte';
+export * from "./users";

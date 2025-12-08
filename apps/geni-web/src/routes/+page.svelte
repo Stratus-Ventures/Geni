@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { AuthForm } from "$lib/auth";
+	import { AuthForm } from '$lib/auth';
 </script>
 
 <main class="grad-bg">
@@ -9,7 +9,6 @@
 </main>
 
 <style>
-	
 	section {
 		display: flex;
 		flex-direction: column;
@@ -18,8 +17,8 @@
 		width: 100%;
 		height: 100%;
 	}
-	
+
 	.grad-bg {
-        background: var(--gradient-main), var(--color-primary-bg);
+		background: var(--gradient-main), var(--color-primary-bg);
 	}
 </style>

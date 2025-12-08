@@ -9,21 +9,9 @@
 	xmlns="http://www.w3.org/2000/svg"
 	class="logo-icon"
 >
-	<circle
-		cx="39"
-		cy="24"
-		r="15"
-		transform="rotate(180 39 24)"
-		fill="currentColor"
-	/>
-	<circle
-		cx="76"
-		cy="24"
-		r="15"
-		transform="rotate(180 76 24)"
-		fill="currentColor"
-	/>
-	
+	<circle cx="39" cy="24" r="15" transform="rotate(180 39 24)" fill="currentColor" />
+	<circle cx="76" cy="24" r="15" transform="rotate(180 76 24)" fill="currentColor" />
+
 	<path
 		d="
 		M64 16
@@ -36,22 +24,10 @@
 		Z"
 		fill="currentColor"
 	/>
-	
-	<circle
-		cx="21"
-		cy="56"
-		r="15"
-		transform="rotate(-120 21 56)"
-		fill="currentColor"
-	/>
-	<circle
-		cx="39"
-		cy="88"
-		r="15"
-		transform="rotate(-120 39 88)"
-		fill="currentColor"
-	/>
-	
+
+	<circle cx="21" cy="56" r="15" transform="rotate(-120 21 56)" fill="currentColor" />
+	<circle cx="39" cy="88" r="15" transform="rotate(-120 39 88)" fill="currentColor" />
+
 	<path
 		d="
 		M39 73
@@ -64,7 +40,7 @@
 		Z"
 		fill="currentColor"
 	/>
-	
+
 	<circle
 		cx="15"
 		cy="15"
@@ -72,15 +48,9 @@
 		transform="matrix(0.5 -0.866026 -0.866026 -0.5 99 76)"
 		fill="currentColor"
 	/>
-	
-	<circle
-		cx="75"
-		cy="88"
-		r="15"
-		transform="rotate(-120 75 88)"
-		fill="currentColor"
-	/>
-	
+
+	<circle cx="75" cy="88" r="15" transform="rotate(-120 75 88)" fill="currentColor" />
+
 	<path
 		d="
 		M75 73
@@ -97,6 +67,6 @@
 
 <style>
 	.logo-icon {
-        fill: var(--color-primary-fg);
+		fill: var(--color-primary-fg);
 	}
 </style>
