@@ -446,8 +446,12 @@
 	.insights-grid {
 		display: flex;
 		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 		gap: 1.5rem;
 		width: 100%;
+		height: fit-content;
+		max-width: 500px;
 	}
 
 	.analyze-another {
