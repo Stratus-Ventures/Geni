@@ -18,7 +18,7 @@ export const users = pgTable(
 	'users',
 	{
 		id: uuid('id').defaultRandom().primaryKey(),
-		name: text('name').notNull(),
+		name: text('name'),
 		email: text('email').unique(),
 		phone: text('phone'),
 		plan: planEnum('plan').notNull().default('FreeTrial'),

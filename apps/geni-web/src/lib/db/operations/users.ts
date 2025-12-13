@@ -23,7 +23,7 @@ export async function userExistsByPhone(phone: string): Promise<boolean> {
 // Create a user
 export async function createUser(userData: {
 	id?: string;
-	name: string;
+	name?: string;
 	email?: string;
 	phone?: string;
 }) {

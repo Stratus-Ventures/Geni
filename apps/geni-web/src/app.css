@@ -11,24 +11,27 @@
 	font-style: normal;
 	color: var(--color-primary-fg);
 	background-color: var(--color-primary-bg);
-	line-height: normal;
-	letter-spacing: -0.04rem;
+	line-height: 1;
+	letter-spacing: -0.03rem;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 
 	/* COLORS */
 	--color-primary-fg: oklch(0.147 0.004 49.25);
+	--color-primary-fg-inverted: oklch(1 0 0);
 	--color-primary-bg: oklch(1 0 89.876);
 	--color-secondary-fg: oklch(0.444 0.011 73.639);
 	--color-secondary-bg: oklch(0.97 0.001 106.424);
 	--color-accent-primary: oklch(0.6996 0.201959 44.4414);
 	--color-accent-secondary: oklch(0.5542 0.19217 35.4846);
-	--color-accent-primary-grade: oklch(0.6996 0.201959 44.4414 / 8%);
-	--color-accent-secondary-grad: oklch(0.6996 0.201959 44.4414 / 24%);
+	--color-accent-primary-grade: oklch(0.6996 0.201959 44.4414 / 0%);
+	--color-accent-secondary-grad: oklch(0.6996 0.201959 44.4414 / 8%);
+	--color-border: oklch(0.9232 0.0026 48.72);
+	--color-shadow: oklch(0.147 0.004 49.25 / 8%);
 	--gradient-main: linear-gradient(
 		180deg,
 		transparent 0%,
-		var(--color-accent-primary-grade) 24%,
+		var(--color-accent-primary-grade) 50%,
 		var(--color-accent-secondary-grad) 100%
 	);
 
@@ -39,9 +42,12 @@
 @media (prefers-color-scheme: dark) {
 	:root {
 		--color-primary-fg: oklch(0.9791 0 0);
+		--color-primary-fg-inverted: oklch(0 0 0);
 		--color-primary-bg: oklch(0.147 0.004 49.25);
 		--color-secondary-fg: oklch(0.709 0.01 56.259);
-		--color-secondary-bg: oklch(0.268 0.007 34.298);
+		--color-secondary-bg: oklch(0.2161 0.0061 56.04);
+		--color-border: oklch(0.2685 0.0063 34.3);
+		--color-shadow: oklch(0.147 0.004 49.25 / 16%);
 	}
 }
 
@@ -104,12 +110,12 @@ main {
 /* MOBILE ---------------------------------------------------------- */
 
 h1 {
-	font-size: 1.5rem;
+	font-size: 2rem;
 	font-weight: 500;
 }
 
 h2 {
-	font-size: 1.25rem;
+	font-size: 1.5rem;
 	font-weight: 500;
 }
 
@@ -124,14 +130,24 @@ p {
 	color: var(--color-secondary-fg);
 }
 
+label {
+	font-size: 1rem;
+	font-weight: 500;
+	letter-spacing: -0.03rem;
+	line-height: 1;
+}
+
 button {
 	font-size: 1rem;
 	font-weight: 500;
+	letter-spacing: -0.03rem;
+	line-height: 1;
 }
 
 small {
-	font-size: 0.75rem;
+	font-size: 0.85rem;
 	font-weight: 400;
+	line-height: 1.6;
 }
 
 /* TABLET & DESKTOP ------------------------------------------------ */

@@ -4,20 +4,11 @@ import { db } from '$lib/db/client';
 import { users } from '$lib/db/schemas/users';
 import { eq } from 'drizzle-orm';
 import type { Handle } from '@sveltejs/kit';
-import type { JwtPayload } from '$lib/auth/services/jwt.server';
-
-// Extend the Locals interface to include user property
-declare global {
-	namespace App {
-		interface Locals {
-			user?: Omit<JwtPayload, 'iat' | 'exp'> & { onboardingCompleted?: boolean };
-		}
-	}
-}
 
 // Public routes that don't require authentication
 const PUBLIC_ROUTES = [
 	'/',
+	'/analyze',
 	'/api/sign-in/magic-link',
 	'/api/sign-in/magic-link/verify',
 	'/api/sign-in/phone-otp',
@@ -61,11 +52,8 @@ export const handle: Handle = async ({ event, resolve }) => {
 			});
 
 			if (dbUser) {
-				// Set user in locals with onboarding status
-				event.locals.user = {
-					...authResult.user,
-					onboardingCompleted: dbUser.onboardingCompleted
-				};
+				// Set user in locals with database user data
+				event.locals.user = dbUser as any;
 
 				// If authenticated user tries to access sign-in page, redirect them
 				if (pathname === '/sign-in') {
