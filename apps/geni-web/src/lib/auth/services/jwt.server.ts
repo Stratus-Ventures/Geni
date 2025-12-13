@@ -1,7 +1,6 @@
 import { createHmac } from 'crypto';
 import type { Cookies } from '@sveltejs/kit';
 import { getAuthToken } from './cookies';
-import { JWT_SECRET as ENV_JWT_SECRET } from '$env/static/private';
 
 // Re-export cookie functions for backward compatibility
 export { setAuthCookie, clearAuthCookies, getAuthToken } from './cookies';
@@ -28,7 +27,7 @@ export interface DecodedToken {
 }
 
 // Configuration
-const JWT_SECRET = ENV_JWT_SECRET || 'your-fallback-secret-key-change-in-production';
+const JWT_SECRET = 'a7f8e2c9b4d1e5f3a6c8b2d9e4f1a7c5b3d8e2f7a1c6b9d4e8f3a7c2b5e9d1';
 const ACCESS_TOKEN_EXPIRY_MS = 60 * 60 * 1000; // 1 hour in milliseconds
 
 /**
