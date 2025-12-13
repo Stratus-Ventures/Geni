@@ -3,7 +3,8 @@
     import { FileUpload, InsightCard } from '$lib/genetics/components';
     import { parse23andMe, analyzeAllTraits } from '$lib/genetics';
     import type { InsightResult, ParseResult } from '$lib/genetics';
-    import { Loader, AlertCircle, ArrowLeft, Dna } from '@lucide/svelte';
+    import { goto } from '$app/navigation';
+    import { Loader, CircleAlert, ArrowLeft, ShoppingCart } from '@lucide/svelte';
 
     type PageState = 'upload' | 'parsing' | 'results' | 'error';
 
@@ -61,6 +62,10 @@
         insights = [];
         parseInfo = null;
     }
+
+    async function requestCheckout() {
+        await goto('/checkout/test');
+    }
 </script>
 
 <svelte:head>
@@ -76,6 +81,10 @@
 		<div class="heading">
 			<h1>Turn your 23andMe data into actionable health insights.</h1>
 			<p class="subtitle">Discover what your DNA says about you</p>
+			<button class="checkout-button" onclick={requestCheckout}>
+				<ShoppingCart size={18} />
+				Get Premium
+			</button>
 		</div>
 	</header>
 	
@@ -101,7 +110,7 @@
 	{:else if state === 'error'}
 		<section class="error-section">
 			<div class="error-content">
-				<AlertCircle size={48} strokeWidth={1.5} />
+				<CircleAlert size={48} strokeWidth={1.5} />
 				<p class="error-message">{error}</p>
 				<button onclick={reset} class="retry-button">
 					<ArrowLeft size={18} />
@@ -163,6 +172,31 @@
 		height: fit-content;
 		gap: 1rem;
 	}
+
+    .checkout-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.85rem 1rem;
+        border-radius: var(--radius-base);
+        background: var(--color-primary-fg);
+        color: var(--color-primary-bg);
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        transition: transform 150ms ease, box-shadow 150ms ease, opacity 150ms ease;
+    }
+
+    .checkout-button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    }
+
+    .checkout-button:active {
+        transform: translateY(0);
+        opacity: 0.9;
+    }
 
     .page-header h1 {
         margin: 0;

@@ -2,7 +2,7 @@
 	import { FileUpload, InsightCard } from '$lib/genetics/components';
 	import { parse23andMe, analyzeAllTraits } from '$lib/genetics';
 	import type { InsightResult, ParseResult, ParseDebugInfo } from '$lib/genetics';
-	import { Loader, AlertCircle, ArrowLeft, Dna, Bug } from '@lucide/svelte';
+	import { Loader, CircleAlert, ArrowLeft, Dna, Bug } from '@lucide/svelte';
 
 	type PageState = 'upload' | 'parsing' | 'results' | 'error';
 
@@ -109,7 +109,7 @@
 	{:else if state === 'error'}
 		<section class="error-section">
 			<div class="error-content">
-				<AlertCircle size={48} strokeWidth={1.5} />
+				<CircleAlert size={48} strokeWidth={1.5} />
 				<p class="error-message">{error}</p>
 
 				{#if debugInfo}

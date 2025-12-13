@@ -29,7 +29,7 @@ export interface DecodedToken {
 }
 
 // Configuration
-const JWT_SECRET = env.JWT_SECRET;
+const JWT_SECRET = env.JWT_SECRET || 'your-fallback-secret-key-change-in-production';
 const ACCESS_TOKEN_EXPIRY_MS = 60 * 60 * 1000; // 1 hour in milliseconds
 
 /**
