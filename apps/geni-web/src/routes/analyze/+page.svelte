@@ -113,7 +113,7 @@
 				<p class="error-message">{error}</p>
 
 				{#if debugInfo}
-					<button on:click={toggleDebug} class="debug-toggle">
+					<button onclick={toggleDebug} class="debug-toggle">
 						<Bug size={16} />
 						{showDebug ? 'Hide' : 'Show'} Debug Info
 					</button>
@@ -156,7 +156,7 @@
 					{/if}
 				{/if}
 
-				<button on:click={reset} class="retry-button">
+				<button onclick={reset} class="retry-button">
 					<ArrowLeft size={18} />
 					Try Again
 				</button>
@@ -176,7 +176,7 @@
 				{/each}
 			</div>
 
-			<button on:click={reset} class="analyze-another">
+			<button onclick={reset} class="analyze-another">
 				<ArrowLeft size={18} />
 				Analyze Another File
 			</button>

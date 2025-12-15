@@ -1,12 +1,17 @@
 <script lang="ts">
 	import { Dna, Shield, FileText } from '@lucide/svelte';
 
-	export let onFileContent: (content: string) => void;
-	export let onError: (error: string) => void;
+	let {
+		onFileContent,
+		onError
+	}: {
+		onFileContent: (content: string) => void;
+		onError: (error: string) => void;
+	} = $props();
 
-	let isDragging = false;
-	let fileName: string | null = null;
-	let fileInputRef: HTMLInputElement;
+	let isDragging = $state(false);
+	let fileName = $state<string | null>(null);
+	let fileInputRef = $state<HTMLInputElement | null>(null);
 
 	function handleDragEnter(e: DragEvent) {
 		e.preventDefault();
@@ -44,13 +49,14 @@
 	}
 
 	function processFile(file: File) {
-		// Validate file type
-		if (!file.name.endsWith('.txt')) {
-			onError('Please upload a .txt file from 23andMe');
+		const validExtensions = ['.txt', '.csv'];
+		const hasValidExtension = validExtensions.some((ext) => file.name.toLowerCase().endsWith(ext));
+
+		if (!hasValidExtension) {
+			onError('Please upload a .txt or .csv file from 23andMe or Ancestry');
 			return;
 		}
 
-		// Check file size (max 50MB for safety)
 		const maxSize = 50 * 1024 * 1024;
 		if (file.size > maxSize) {
 			onError('File is too large. Maximum size is 50MB.');
@@ -101,12 +107,12 @@
 		onkeydown={handleKeyDown}
 		role="button"
 		tabindex="0"
-		aria-label="Upload your 23andMe raw data file"
+		aria-label="Upload your DNA raw data file"
 	>
 		<input
 			bind:this={fileInputRef}
 			type="file"
-			accept=".txt"
+			accept=".txt,.csv"
 			onchange={handleFileSelect}
 			class="file-input"
 			aria-hidden="true"
@@ -120,24 +126,23 @@
 			{:else}
 				<Dna size={48} strokeWidth={1.5} class="dna-icon" />
 				<p class="main-text">
-					{isDragging ? 'Drop your file here' : 'Upload your 23andMe raw data'}
+					{isDragging ? 'Drop your file here' : 'Upload your raw DNA data'}
 				</p>
 				<p class="hint">Drag and drop or click to browse</p>
-				<p class="file-type">Accepts .txt files</p>
+				<p class="file-type">Accepts .txt (23andMe) or .csv (Ancestry) files</p>
 			{/if}
 		</div>
 	</div>
 
 	<div class="privacy-notice">
 		<Shield size={16} strokeWidth={2} />
-		<span>Your DNA data stays on your device. We never upload or store your genetic information.</span>
+		<span>Your DNA data stays on your device. We never upload or store your genetic file.</span>
 	</div>
 </div>
 
 <style>
 	.upload-container {
 		width: 100%;
-		max-width: 500px;
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
@@ -185,13 +190,16 @@
 		text-align: center;
 	}
 
-	.dropzone-content :global(.upload-icon) {
+	.dropzone-content :global(.upload-icon),
+	.dropzone-content :global(.dna-icon) {
 		color: var(--color-secondary-fg);
 		transition: color 0.2s;
 	}
 
 	.dropzone:hover :global(.upload-icon),
-	.dropzone.dragging :global(.upload-icon) {
+	.dropzone:hover :global(.dna-icon),
+	.dropzone.dragging :global(.upload-icon),
+	.dropzone.dragging :global(.dna-icon) {
 		color: var(--color-accent-primary);
 	}
 
