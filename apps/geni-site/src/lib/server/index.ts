@@ -31,3 +31,4 @@ export {
 
 export { sendMagicLinkEmail } from './email';
 export { encryptData, decryptData, encryptReport, decryptReport } from './crypto';
+export { extractEmailFromCheckout } from './checkout';

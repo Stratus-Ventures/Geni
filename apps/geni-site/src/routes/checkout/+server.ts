@@ -9,9 +9,12 @@ const polar = new Polar({
 });
 
 export const GET: RequestHandler = async () => {
+	const baseSuccessUrl = env.SUCCESS_URL || 'http://localhost:5173/checkout/success';
+	const successUrl = `${baseSuccessUrl}?checkout_id={CHECKOUT_ID}`;
+
 	const checkout = await polar.checkouts.create({
 		products: [env.POLAR_PRODUCT_ID],
-		successUrl: env.SUCCESS_URL
+		successUrl
 	});
 
 	redirect(303, checkout.url);

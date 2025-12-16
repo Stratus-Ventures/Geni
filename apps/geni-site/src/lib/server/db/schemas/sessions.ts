@@ -1,7 +1,7 @@
 import { pgTable, uuid, text, timestamp, boolean, primaryKey } from 'drizzle-orm/pg-core';
 
 export const jwtTokenLogs = pgTable('jwt_token_logs', {
-	id: uuid('id').defaultRandom().primaryKey(),
+	id: uuid('log_id').defaultRandom().primaryKey(),
 	userId: uuid('user_id').notNull(),
 	tokenHash: text('token_hash').notNull(),
 	issuedAt: timestamp('issued_at').notNull(),

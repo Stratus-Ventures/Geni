@@ -2,9 +2,10 @@ import { redirect } from '@sveltejs/kit';
 import { Polar } from '@polar-sh/sdk';
 import { env } from '$env/dynamic/private';
 import type { PageServerLoad } from './$types';
-import { createUser, getUserByEmail, updateUserPlan } from '$lib/server/db/operations/users';
+import { upsertUser } from '$lib/server/db/operations/users';
 import { generateAndLogToken } from '$lib/server/auth/jwt.server';
 import { setAuthCookie } from '$lib/server/auth/cookies';
+import { extractEmailFromCheckout } from '$lib/server/checkout';
 
 const polar = new Polar({
 	accessToken: env.POLAR_ACCESS_TOKEN,
@@ -15,7 +16,7 @@ export const load: PageServerLoad = async ({ url, cookies }) => {
 	const checkoutId = url.searchParams.get('checkout_id');
 
 	if (!checkoutId) {
-		redirect(303, '/');
+		redirect(303, '/?error=missing_checkout');
 	}
 
 	const checkout = await polar.checkouts.get({ id: checkoutId });
@@ -24,21 +25,14 @@ export const load: PageServerLoad = async ({ url, cookies }) => {
 		redirect(303, '/?error=payment_failed');
 	}
 
-	const email = checkout.customerEmail;
+	const email = extractEmailFromCheckout(checkout);
 
 	if (!email) {
+		console.error('No email found in checkout:', JSON.stringify(checkout, null, 2));
 		redirect(303, '/?error=no_email');
 	}
 
-	let user = await getUserByEmail(email);
-
-	if (!user) {
-		user = await createUser({ email, plan: 'paid' });
-	} else if (user.plan !== 'paid') {
-		await updateUserPlan(user.id, 'paid');
-		user = { ...user, plan: 'paid' };
-	}
-
+	const user = await upsertUser(email.toLowerCase(), 'paid');
 	const token = await generateAndLogToken({
 		userId: user.id,
 		email: user.email,

@@ -1,4 +1,4 @@
-import { eq } from 'drizzle-orm';
+import { eq, sql } from 'drizzle-orm';
 import { db } from '../client';
 import { users } from '../schemas';
 
@@ -21,7 +21,7 @@ export async function createUser(input: CreateUserInput): Promise<UserRecord> {
 	const [user] = await db
 		.insert(users)
 		.values({
-			email: input.email,
+			email: input.email.toLowerCase(),
 			name: input.name ?? null,
 			plan: input.plan ?? 'free'
 		})
@@ -30,7 +30,11 @@ export async function createUser(input: CreateUserInput): Promise<UserRecord> {
 }
 
 export async function getUserByEmail(email: string): Promise<UserRecord | null> {
-	const [user] = await db.select().from(users).where(eq(users.email, email)).limit(1);
+	const [user] = await db
+		.select()
+		.from(users)
+		.where(eq(sql`lower(${users.email})`, email.toLowerCase()))
+		.limit(1);
 	return user ?? null;
 }
 
@@ -55,13 +59,20 @@ export async function upsertUser(
 	email: string,
 	plan: 'free' | 'paid' = 'free'
 ): Promise<UserRecord> {
-	const existing = await getUserByEmail(email);
-	if (existing) {
-		if (plan === 'paid' && existing.plan !== 'paid') {
-			const updated = await updateUserPlan(existing.id, plan);
-			return updated ?? existing;
-		}
-		return existing;
-	}
-	return createUser({ email, plan });
+	const normalizedEmail = email.toLowerCase();
+	const [user] = await db
+		.insert(users)
+		.values({
+			email: normalizedEmail,
+			plan
+		})
+		.onConflictDoUpdate({
+			target: users.email,
+			set: {
+				plan: sql`CASE WHEN ${users.plan} = 'free' AND ${plan} = 'paid' THEN 'paid' ELSE ${users.plan} END`,
+				updatedAt: new Date()
+			}
+		})
+		.returning();
+	return user;
 }
