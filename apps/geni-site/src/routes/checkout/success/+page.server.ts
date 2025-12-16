@@ -1,14 +1,14 @@
 import { redirect } from '@sveltejs/kit';
 import { Polar } from '@polar-sh/sdk';
-import { POLAR_ACCESS_TOKEN, POLAR_MODE } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 import type { PageServerLoad } from './$types';
 import { createUser, getUserByEmail, updateUserPlan } from '$lib/server/db/operations/users';
 import { generateAndLogToken } from '$lib/server/auth/jwt.server';
 import { setAuthCookie } from '$lib/server/auth/cookies';
 
 const polar = new Polar({
-	accessToken: POLAR_ACCESS_TOKEN,
-	server: POLAR_MODE === 'sandbox' ? 'sandbox' : 'production'
+	accessToken: env.POLAR_ACCESS_TOKEN,
+	server: env.POLAR_MODE === 'sandbox' ? 'sandbox' : 'production'
 });
 
 export const load: PageServerLoad = async ({ url, cookies }) => {
