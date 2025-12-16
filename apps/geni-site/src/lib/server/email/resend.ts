@@ -1,14 +1,21 @@
 import { Resend } from 'resend';
 import { env } from '$env/dynamic/private';
 
-const resend = new Resend(env.RESEND_API_KEY);
+let resend: Resend | null = null;
+
+function getResend(): Resend {
+	if (!resend) {
+		resend = new Resend(env.RESEND_API_KEY);
+	}
+	return resend;
+}
 
 export async function sendMagicLinkEmail(email: string, token: string): Promise<boolean> {
 	const baseUrl = env.DEV_URL || env.PROD_URL || 'http://localhost:5173';
 	const magicLink = `${baseUrl}/auth/verify?email=${encodeURIComponent(email)}&token=${token}`;
 
 	try {
-		const { error } = await resend.emails.send({
+		const { error } = await getResend().emails.send({
 			from: env.FROM_EMAIL || 'support@geni.health',
 			to: email,
 			subject: 'Access Your Geni Report',
